@@ -21,10 +21,18 @@ const routes = [
     component: () => import('../views/TaskList.vue'),
   },
   {
-    path: '/tasklist/:id',
+    path: '/tasklist/:taskid',
     name: 'PointList',
     props: true,
     component: () => import('../views/PointList.vue'),
+    children: [
+      {
+        path: 'point/:pointid',
+        name: 'Point',
+        props: true,
+        component: () => import('../views/Point.vue'),
+      },
+    ],
   },
 ];
 

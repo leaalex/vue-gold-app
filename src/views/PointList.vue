@@ -1,5 +1,8 @@
 <template>
-  <h1>Саписок точек учета</h1>
+  <q-page>
+    <h4>Саписок точек учета</h4>
+    <router-view />
+  </q-page>
 </template>
 
 <script>
