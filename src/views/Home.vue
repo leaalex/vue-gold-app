@@ -1,7 +1,7 @@
 <template>
-  <q-page>
-    <h4>Главная страница</h4>
-    <global-nav bordered="true" padding="true"/>
+  <q-page class="q-ma-lg">
+    <h4 class="text-grey">Главная страница</h4>
+    <global-nav bordered padding/>
   </q-page>
 </template>
 

@@ -1,33 +1,32 @@
 <template>
-  <q-list>
-    {{ bordered }}
-    <q-item to='/'>
+  <q-list :bordered="bordered" :padding="padding" separator>
+    <q-item v-for="({url, name , icon}, index) in nav" :key="index" clickable v-ripple :to='url'>
       <q-item-section avatar>
-        <q-icon name="home" />
+        <q-icon :name="icon" />
       </q-item-section>
-      <q-item-section>Главная страница</q-item-section>
+      <q-item-section>{{name}}</q-item-section>
     </q-item>
-    <q-item to='/task'>
-      <q-item-section avatar>
-        <q-icon name="map" />
-      </q-item-section>
-      <q-item-section>Список задач</q-item-section>
-    </q-item>
-    <q-item to='/map'>
-    <q-item-section avatar>
-      <q-icon name="map" />
-    </q-item-section>
-    <q-item-section>Карта</q-item-section>
-  </q-item>
-
-
   </q-list>
 </template>
 
 <script>
+
+
 export default {
   name: 'GlobalNav',
-  props: ['bordered', 'padding'],
+  props: {
+    bordered: Boolean,
+    padding: Boolean,
+  },
+  data() {
+    return {
+      nav: [
+        { icon: 'home', url: '/', name: 'Главаная страница' },
+        { icon: 'list', url: '/tasklist', name: 'Список задач' },
+        { icon: 'map', url: '/map', name: 'Карта' },
+      ],
+    };
+  },
 };
 </script>
 
