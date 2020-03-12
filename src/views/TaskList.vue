@@ -34,7 +34,7 @@ import { mapState, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      edit: false,
+      edit: [],
     };
   },
   computed: {
@@ -51,7 +51,14 @@ export default {
     // }),
   },
   created() {
-    this.getTaskList().then((data) => { console.log('из компонента', data); });
+    this.edit = {};
+    this.getTaskList().then((data) => {
+      data.forEach((el) => {
+        this.edit.push({ id: el.id, isEdit: false });
+      });
+      console.log('2', this.edit);
+      console.log('из компонента', data);
+    });
   },
 };
 </script>
