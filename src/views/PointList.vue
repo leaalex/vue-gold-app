@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
   props: ['taskid'],
@@ -42,14 +42,21 @@ export default {
       getTaskList: 'task/getList',
       getPointList: 'point/getList',
     }),
+    ...mapMutations({
+      isLoading: 'point/SET_IS_LOADING',
+    }),
   },
   created() {
+    console.log(this.pointlistIsLoading);
     this.getTaskList([this.taskid])
       .then((data) => { console.log('из компонента', this.taskid, data[0]); return data[0].points; })
       .then((points) => { console.log(points); this.getPointList(points); })
       .catch((error) => {
         this.error = error;
       });
+  },
+  destroyed() {
+    this.isLoading(true);
   },
 };
 </script>

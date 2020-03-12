@@ -23,13 +23,9 @@ export default {
   actions: {
     getList({ commit }, list = [1, 2, 3]) {
       return new Promise((resolve) => {
-        setTimeout(
-          () => {
-            const data = get('taskList', list);
-            commit(SET_LIST, data);
-            resolve(data);
-          }, 1000,
-        );
+        const data = get('taskList', list);
+        commit(SET_LIST, data);
+        resolve(data);
       });
     },
   },

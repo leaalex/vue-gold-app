@@ -8,12 +8,17 @@
         v-for="({id, name, points}, index) in tasklist"
         :key="index"
         clickable
-        v-ripple
-        :to="`tasklist/${id}`">
-        <q-item-section avatar>
+        v-ripple>
+        <q-item-section avatar @click.native="$router.push(`tasklist/${id}`)">
           <q-icon name="list" />
         </q-item-section>
-        <q-item-section>{{name}}</q-item-section>
+        <q-item-section v-if="edit">
+          <q-input />
+        </q-item-section>
+        <q-item-section v-else @click.native="$router.push(`tasklist/${id}`)">
+          {{name}}
+        </q-item-section>
+        <q-btn icon="edit" @click="edit = !edit"></q-btn>
         <q-item-section side top>
           <q-item-label caption>{{points.length}}</q-item-label>
           <q-icon name="point" color="yellow" />
@@ -27,6 +32,11 @@
 import { mapState, mapActions } from 'vuex';
 
 export default {
+  data() {
+    return {
+      edit: false,
+    };
+  },
   computed: {
     ...mapState({
       tasklist: (state) => state.task.list,
@@ -37,6 +47,8 @@ export default {
     ...mapActions({
       getTaskList: 'task/getList',
     }),
+    // ...mapMutations({
+    // }),
   },
   created() {
     this.getTaskList().then((data) => { console.log('из компонента', data); });
