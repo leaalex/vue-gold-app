@@ -6,9 +6,7 @@
 </template>
 
 <script>
-  export default {
-    props: ['taskid']
-
-  }
+export default {
+  props: ['taskid'],
+};
 </script>
-

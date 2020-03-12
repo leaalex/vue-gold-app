@@ -17,13 +17,15 @@ const taskList = [
 
 export default function get(key, array) {
   const object = {};
-  const arrayBuffer = []
+  const arrayBuffer = [];
   switch (key) {
     case 'taskList':
-      arrayBuffer.push(...taskList.slice())
+      arrayBuffer.push(...taskList.slice());
       break;
     case 'pointList':
-      arrayBuffer.push(...pointList.slice())
+      arrayBuffer.push(...pointList.slice());
+      break;
+    default:
       break;
   }
   arrayBuffer.forEach((el) => { object[el.idpoint] = el; });

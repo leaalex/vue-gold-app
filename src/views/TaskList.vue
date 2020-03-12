@@ -1,7 +1,9 @@
 <template>
   <q-page class="q-ma-lg">
   <h4>Список задач</h4>
-    <q-list separator>
+    <q-spinner
+      v-if="tasklistIsLoading" color="red" :size="40" style="display:block;margin: 0 auto" />
+    <q-list v-else separator>
       <q-item
         v-for="({taskid, name}, index) in tasklist"
         :key="index"
@@ -18,13 +20,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   computed: {
     ...mapState({
       tasklist: (state) => state.task.list,
+      tasklistIsLoading: (state) => state.task.listIsLoading,
     }),
+  },
+  methods: {
+    ...mapActions({
+      getTaskList: 'task/getList',
+      getPointList: 'point/getList',
+    }),
+  },
+  created() {
+    this.getTaskList();
   },
 };
 </script>
