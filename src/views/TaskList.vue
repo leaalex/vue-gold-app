@@ -36,7 +36,6 @@ export default {
   methods: {
     ...mapActions({
       getTaskList: 'task/getList',
-      getPointList: 'point/getList',
     }),
   },
   created() {
