@@ -5,11 +5,11 @@
       v-if="tasklistIsLoading" color="red" :size="40" style="display:block;margin: 0 auto" />
     <q-list v-else separator>
       <q-item
-        v-for="({taskid, name}, index) in tasklist"
+        v-for="({id, name}, index) in tasklist"
         :key="index"
         clickable
         v-ripple
-        :to="`tasklist/${taskid}`">
+        :to="`tasklist/${id}`">
         <q-item-section avatar>
           <q-icon name="list" />
         </q-item-section>
@@ -36,7 +36,7 @@ export default {
     }),
   },
   created() {
-    this.getTaskList();
+    this.getTaskList().then((data) => { console.log('из компонента', data); });
   },
 };
 </script>

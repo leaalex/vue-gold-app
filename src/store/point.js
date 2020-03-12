@@ -23,6 +23,4 @@ export default {
       commit(SET_LIST, get('taskList', list));
     },
   },
-  modules: {
-  },
 };

@@ -16,21 +16,21 @@ export default {
   },
   mutations: {
     [SET_LIST](state, result) {
-      state.list = [...state.list, ...result];
+      state.list = result;
       state.listIsLoading = false;
     },
   },
   actions: {
     getList({ commit }, list = [1, 2, 3]) {
-      console.log('asdfasdf');
-      setTimeout(
-        () => {
-          commit(SET_LIST, get('tasklist', list));
-          console.log('action');
-        }, 1000,
-      );
+      return new Promise((resolve) => {
+        setTimeout(
+          () => {
+            const data = get('taskList', list);
+            commit(SET_LIST, data);
+            resolve(data);
+          }, 1000,
+        );
+      });
     },
-  },
-  modules: {
   },
 };
