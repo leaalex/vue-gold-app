@@ -5,7 +5,7 @@
       v-if="tasklistIsLoading" color="red" :size="40" style="display:block;margin: 0 auto" />
     <q-list v-else separator>
       <q-item
-        v-for="({id, name}, index) in tasklist"
+        v-for="({id, name, points}, index) in tasklist"
         :key="index"
         clickable
         v-ripple
@@ -14,6 +14,10 @@
           <q-icon name="list" />
         </q-item-section>
         <q-item-section>{{name}}</q-item-section>
+        <q-item-section side top>
+          <q-item-label caption>{{points.length}}</q-item-label>
+          <q-icon name="point" color="yellow" />
+        </q-item-section>
       </q-item>
     </q-list>
   </q-page>
