@@ -6,4 +6,9 @@
 </template>
 
 <script>
+  export default {
+    props: ['taskid']
+
+  }
 </script>
+

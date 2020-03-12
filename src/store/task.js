@@ -1,19 +1,27 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import get from './data';
 
 Vue.use(Vuex);
 
+
+const SET_TASK_LIST = 'SET_USER_ITEM';
+
 export default {
   state: {
-    list: [
-      { taskid: 1, name: 'Задание 1', points: [1, 2, 3] },
-      { taskid: 2, name: 'Задание 2', points: [3, 4, 5] },
-      { taskid: 3, name: 'Задание 3', points: [5, 6, 7, 8, 9, 10] },
-    ],
+    listIsLoading: true,
+    list: [],
   },
   mutations: {
+    [SET_TASK_LIST](state, result) {
+      state.list = [...state.list, ...result];
+      state.listIsLoading = false;
+    },
   },
   actions: {
+    getTaskList(context, list) {
+      context.commit(SET_TASK_LIST, get('taskList', list));
+    },
   },
   modules: {
   },
