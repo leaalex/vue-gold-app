@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 
 const SET_LIST = 'SET_LIST';
+const SET_ITEM = 'SET_ITEM';
 
 
 export default {
@@ -18,6 +19,9 @@ export default {
     [SET_LIST](state, result) {
       state.list = result;
       state.listIsLoading = false;
+    },
+    [SET_ITEM](state, obj) {
+      console.log(obj);
     },
   },
   actions: {
